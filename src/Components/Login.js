@@ -1,65 +1,56 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import google from '../images/google.png';
+import React from 'react';
 import './Auth.css';
+import { FaUser, FaLock } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
+import login_img from '../images/login_img.jpg';
 
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('/api/users/login', { email, password });
-      localStorage.setItem('token', res.data.token);
-      alert('Login successful');
-    } catch (err) {
-      console.error(err);
-      alert('Login failed: ' + (err.response?.data?.message || err.message));
-    }
-  };
-
-  const handleGoogleLogin = () => {
-    alert('Google login coming soon!');
-  };
-
+function Login() {
   return (
     <div className="auth-container">
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <h2 className="auth-title">Welcome Back</h2>
-        <button type="button" className="google-btn" onClick={handleGoogleLogin}>
-          <img src={google} alt="Google logo" />
-          Continue with Google
-        </button>
-
-        <div className="or-divider"><span>or</span></div>
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        
-        <div className="forgot-password">
-          <Link to="/forgot-password">Forgot password?</Link>
+      <div className="auth-box">
+        <div className="auth-image">
+          <img src={login_img} alt="Login Illustration" />
         </div>
-
-        <button type="submit">Login</button>
-        <p className="auth-footer">
-          Don't have an account? <Link to="/register">Register</Link>
-        </p>
-      </form>
+        <div className="auth-form">
+          <h2>Log In</h2>
+          <div className="input-group input-limited">
+            <FaUser className="input-icon" />
+            <input type="text" placeholder="Your Name" />
+          </div>
+          <div className="input-group input-limited">
+            <FaLock className="input-icon" />
+            <input type="password" placeholder="Password" />
+          </div>
+          <div className="extra-options">
+            <div className="remember-me">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember"> Remember me</label>
+            </div>
+            <a href="/forgot-password" className="forgot-link">Forgot Password?</a>
+          </div>
+          <br />
+          <button className="login-btn small">Log in</button>
+          <p className="create-account">
+            <a href="/register">Create an account</a>
+          </p>
+          <div className="social-login">
+            <span>Or login with</span>
+            <div className="social-icons">
+              <button className="facebook">
+                <FaFacebookF />
+              </button>
+              <button className="twitter">
+                <FaTwitter />
+              </button>
+              <button className="google">
+                <FaGoogle />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Login;
