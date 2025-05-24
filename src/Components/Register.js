@@ -1,7 +1,7 @@
 import React from 'react';
 import './Auth.css';
 import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
-import login_img from '../images/login_img.jpg';
+import login_img from '../images/login_img1.png';
 
 function Register() {
   return (

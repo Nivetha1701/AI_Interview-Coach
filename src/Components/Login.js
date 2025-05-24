@@ -2,7 +2,7 @@ import React from 'react';
 import './Auth.css';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
-import login_img from '../images/login_img.jpg';
+import login_img from '../images/login_img1.png';
 
 function Login() {
   return (
@@ -29,7 +29,7 @@ function Login() {
             <a href="/forgot-password" className="forgot-link">Forgot Password?</a>
           </div>
           <br />
-          <button className="login-btn small">Log in</button>
+          <button className="login-btn small">Login</button>
           <p className="create-account">
             <a href="/register">Create an account</a>
           </p>
